@@ -17,9 +17,9 @@ jQuery.fn.wheres_my_chip_chip = function(options) {
       cut     : false
     }, options);
 
-    this.each(function(){
+    this.each(function(props){
 
-      var chippy = $('<div id="theres_my_chip_chip">');
+      var chippy = $('<div>');
 
       chippy.data('height', $(this).height());
 
@@ -31,23 +31,22 @@ jQuery.fn.wheres_my_chip_chip = function(options) {
        'background-position': '0px 0px',
           'background-image': 'url(' + theres_my_chip_chip + ')'});
 
-
       chippy.data('peek', function(){
           var peek_height = ((Math.round(2*(settings.height)/4.2)));
 
-          $("#theres_my_chip_chip").css('height', '0px');
+          chippy.css('height', '0px');
 
-          $("#theres_my_chip_chip").stop().animate({'height' : peek_height + 'px'},
+          chippy.stop().animate({'height' : peek_height + 'px'},
                                                    {duration:1000, complete:  function(){ chippy.trigger('chippy_hide'); }});
         });
 
 
       chippy.data('hide', function(){
-          $("#theres_my_chip_chip").animate({'height' : '0px'}, 300, function(){ chippy.trigger('chippy_hidden'); });
+          chippy.animate({'height' : '0px'}, 300, function(){ chippy.trigger('chippy_hidden'); });
         });
 
       chippy.data('love', function(){
-          $("#theres_my_chip_chip").animate({'height' : settings.height + 'px'}, 150, 'linear');
+          chippy.animate({'height' : settings.height + 'px'}, 150, 'linear');
         });
 
       chippy.bind('chippy_hide', function(){
